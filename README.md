@@ -12,4 +12,4 @@
     - 유저 - 댓글
 
 
-[](./pair.assets/ezgif.com-gif-maker.gif)
+![페어프로젝트](./pair.assets/ezgif.com-gif-maker.gif)
