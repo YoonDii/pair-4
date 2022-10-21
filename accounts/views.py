@@ -31,8 +31,9 @@ def login(request):
             return redirect(request.GET.get("next") or "articles:index")
     else:
         form = AuthenticationForm()
+
     context = {"form": form}
-    return render(request, "accounts/login.html,context")
+    return render(request, "accounts/login.html", context)
 
 
 def logout(request):

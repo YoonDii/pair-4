@@ -19,7 +19,7 @@ class Article(models.Model):
     thumbnail = ProcessedImageField(upload_to='images/', blank=True,
                                 processors=[Thumbnail(200, 300)],
                                 format='JPEG',
-                                options={'quality': 80})
+                                options={'quality': 80})   
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)                            
                             
 class Comment(models.Model):
