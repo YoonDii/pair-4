@@ -5,7 +5,7 @@ from imagekit.processors import ResizeToFill, Thumbnail
 
 # Create your models here.
 
-class Article():
+class Article(models.Model):
     title = models.CharField(max_length=20)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -20,3 +20,10 @@ class Article():
                                 processors=[Thumbnail(200, 300)],
                                 format='JPEG',
                                 options={'quality': 80})
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)                            
+                            
+class Comment(models.Model):
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)                            
