@@ -39,3 +39,16 @@ def logout(request):
     auth_logout(request)
     messages.warning(request, "로그아웃 하였습니다.")
     return redirect("articles:index")
+
+
+@login_required
+def update(request):
+    if request.method == "POST":
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("accounts:detail", request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {"form": form}
+    return render(request, "accounts/update.html", context)
