@@ -33,3 +33,9 @@ def login(request):
         form = AuthenticationForm()
     context = {"form": form}
     return render(request, "accounts/login.html,context")
+
+
+def logout(request):
+    auth_logout(request)
+    messages.warning(request, "로그아웃 하였습니다.")
+    return redirect("articles:index")
