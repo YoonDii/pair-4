@@ -41,7 +41,20 @@ def logout(request):
     return redirect("articles:index")
 
 
+@login_required
+def update(request):
+    if request.method == "POST":
+        form = CustomUserChangeForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect("accounts:detail", request.user.pk)
+    else:
+        form = CustomUserChangeForm(instance=request.user)
+    context = {"form": form}
+    return render(request, "accounts/update.html", context)
+
 def detail(request, pk):
     user = get_user_model().objects.get(pk=pk)
     context = {"user": user}
     return render(request, "accounts/detail.html", context)
+
