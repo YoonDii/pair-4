@@ -39,3 +39,9 @@ def logout(request):
     auth_logout(request)
     messages.warning(request, "로그아웃 하였습니다.")
     return redirect("articles:index")
+
+
+def detail(request, pk):
+    user = get_user_model().objects.get(pk=pk)
+    context = {"user": user}
+    return render(request, "accounts/detail.html", context)
